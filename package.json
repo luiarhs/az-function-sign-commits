@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "sign-commit",
   "version": "1.0.0",
   "description": "",
   "main": "src/functions/*.js",
@@ -8,11 +8,11 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0",
-    "@octokit/graphql": "^8.0.0",
-    "octokit": "^3.1.2"
+    "@azure/functions": "^4.2.0",
+    "@octokit/core": "^6.0.0",
+    "@octokit/graphql": "^8.0.0"
   },
   "devDependencies": {
-    "azure-functions-core-tools": "^4.x"
+    "azure-functions-core-tools": "^4.0.5530"
   }
 }
