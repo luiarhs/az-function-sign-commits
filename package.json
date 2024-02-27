@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@azure/functions": "^4.2.0",
-    "@octokit/core": "^6.0.0",
-    "@octokit/graphql": "^8.0.0"
+    "@octokit/core": "^5.1.0",
+    "@octokit/graphql": "^7.0.2"
   },
   "devDependencies": {
     "azure-functions-core-tools": "^4.0.5530"
