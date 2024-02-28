@@ -10,8 +10,8 @@ app.http('AddMembers', {
         context.log(`Http function processed request for url "${request.url}"`)
         
         const octokit = new Octokit({
-            auth: `${process.env["GITHUB_TOKEN"]}`,
-            baseUrl: `${process.env["GITHUB_URL"]}`
+            auth: `${process.env.GITHUB_TOKEN}`,
+            baseUrl: `${process.env.GITHUB_URL}`
         })
         
         try {
