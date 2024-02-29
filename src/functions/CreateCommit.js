@@ -18,6 +18,20 @@ app.http('CreateCommit', {
           const branch = 'main';
           const message64 = 'IyBHaXRIdWIgR3JhcGhRTCBBUEkNCg0KIyMgVGVzdCBjb21taXQgdXNpbmcgZ3JhcGhxbCBpbiBhIEF6IEZu';
   
+          const response = await octokit(`query  Repository {
+              repository(owner: "${owner}", name: "${repo}") {
+                  ref(qualifiedName: "${branch}") {
+                      target {
+                          ... on Commit {
+                              oid
+                          }
+                      }
+                  }
+              }
+          }`);
+  
+          const headId = response.repository.ref.target.oid;
+  
           // Construct a schema, using GraphQL schema language
           const data = await octokit(`mutation CreateCommitOnBranch {
               createCommitOnBranch(
