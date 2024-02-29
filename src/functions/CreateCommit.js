@@ -13,19 +13,37 @@ app.http('CreateCommit', {
         })
         
         try {
-            const { response } = await octokit.graphql(`
-              {
-                repository(owner: "luiarhs", name: "datalist") {
-                  issues(last: 3) {
-                    edges {
-                      node {
-                        title
+          const owner = 'luiarhs';
+          const repo = 'github-actions-test';
+          const branch = 'main';
+          const message64 = 'IyBHaXRIdWIgR3JhcGhRTCBBUEkNCg0KIyMgVGVzdCBjb21taXQgdXNpbmcgZ3JhcGhxbCBpbiBhIEF6IEZu';
+  
+          // Construct a schema, using GraphQL schema language
+          const data = await octokit(`mutation CreateCommitOnBranch {
+              createCommitOnBranch(
+                  input: {
+                      branch: {
+                          branchName: "${branch}",
+                          repositoryNameWithOwner: "${owner}/${repo}"
                       }
-                    }
+                      fileChanges: {
+                          additions: [{
+                              path: "README.md",
+                              contents: "${message64}"
+                          }]
+                      }
+                      message: { headline: "[add] commit by azure fapp" }
+                      expectedHeadOid: "${headId}"
                   }
-                }
+              ) {
+                  clientMutationId
+                  ref {
+                      id
+                      name
+                      prefix
+                  }
               }
-            `);
+          }`);
 
             context.log(response);
         } catch (error) {
