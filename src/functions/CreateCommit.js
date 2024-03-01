@@ -17,8 +17,8 @@ app.http("CreateCommit", {
       const owner = "luiarhs";
       const repo = "github-actions-test";
       const branch = "main";
-      const message64 =
-        "IyBHaXRIdWIgR3JhcGhRTCBBUEkNCg0KIyMgVGVzdCBjb21taXQgdXNpbmcgZ3JhcGhxbCBpbiBhIEF6IEZu";
+      const message = "[add] new commit";
+      const content64 ="IyBHaXRIdWIgR3JhcGhRTCBBUEkNCg0KIyMgVGVzdCBjb21taXQgdXNpbmcgZ3JhcGhxbCBpbiBhIEF6IEZu";
 
       const response = await octokit(`query  Repository {
               repository(owner: "${owner}", name: "${repo}") {
@@ -45,10 +45,10 @@ app.http("CreateCommit", {
                       fileChanges: {
                           additions: [{
                               path: "README.md",
-                              contents: "${message64}"
+                              contents: "${content64}"
                           }]
                       }
-                      message: { headline: "[add] commit by azure fapp" }
+                      message: { headline: "${message}" }
                       expectedHeadOid: "${headId}"
                   }
               ) {
