@@ -1,5 +1,5 @@
-const { app } = require("@azure/functions");
-const { Octokit } = require('octokit');
+const { app } = require('@azure/functions');
+const { Octokit } = require('@octokit/core');
 
 app.http("TestFunction", {
 	methods: ["POST"],
